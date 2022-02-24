@@ -1,1 +1,2 @@
 <!--pages/home-music/index.wxml-->
+<van-search bind:click-input="handleSerchClick" placeholder="搜索您喜欢的歌曲" shape="round" disabled />
