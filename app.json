@@ -3,7 +3,8 @@
     "pages/home-music/index",
     "pages/home-video/index",
     "components/video-item-v1/index",
-    "pages/detail-video/index"
+    "pages/detail-video/index",
+    "pages/home-search/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

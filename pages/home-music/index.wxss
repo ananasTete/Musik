@@ -1,4 +1,8 @@
 /* pages/home-music/index.wxss */
-page {
-  
+.swiper {
+  width: 100%;
+}
+
+.swiper .swiper-image {
+  width: 100%;
 }
