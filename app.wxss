@@ -1,11 +1,8 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+page {
   box-sizing: border-box;
-  background-color: #fafafa;
-} 
+}
+
+.van-search {
+  padding: 10px 0 !important;
+}

@@ -1,0 +1,10 @@
+<!--components/hot-song-item/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+
+<view class="song-item">
+  <view class="img">
+    <image class="image" src="{{item.coverImgUrl}}" mode="widthFix"></image>
+    <view class="count">{{format.formatCount(item.playCount)}}</view>
+  </view>
+  <view class="title">{{item.name}}</view>
+</view>

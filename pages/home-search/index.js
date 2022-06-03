@@ -1,66 +1,60 @@
 // pages/home-search/index.js
+import {getSearchHot, getSearchSuggest, getSearchResult} from '../../service/api_search'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    hots: [],
+    searchValue: "",
+    suggest: [],
+    searchResult: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 请求热门搜索数据
+    getSearchHot().then(res => {
+      console.log(res);
+      this.setData({ hots: res.result.hots })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onSearchChange: function(event) {
+    // 获取搜索内容
+    let searchValue = event.detail
+    this.setData({ searchValue })
+    if(searchValue.startsWith(" ")) {
+      searchValue = searchValue.trim()
+    }
+    if(!searchValue.length) {
+      this.setData({ suggest: [], searchResult: [] })
+      return
+    } 
+    getSearchSuggest(searchValue).then(res => {
+      const data = res.result.allMatch || [];
+      if(data.length > 0) {
+        data.forEach(item => {
+          if(item.keyword.startsWith(searchValue)) {
+            item.hightLight = searchValue
+            item.commonWord = item.keyword.replace(searchValue, "")
+          }
+        })
+      }
+      this.setData({ suggest: data})
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onSearchEnter: function() {
+    getSearchResult(this.data.searchValue).then(res => {
+      this.setData({ searchResult: res.result.songs })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onKeywordClick: function(event) {
+    const newValue = event.currentTarget.dataset.item
+    this.setData({ searchValue: newValue})
+    this.onSearchEnter()
   }
 })

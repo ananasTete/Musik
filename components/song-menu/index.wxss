@@ -1,0 +1,17 @@
+/* components/song-menu/index.wxss */
+.menu-list {
+  width: 100vw;
+  white-space: nowrap;           /*内容不换行*/
+  position: relative;
+  left: -30rpx;
+}
+
+.menu-item {
+  display: inline-block;
+  vertical-align: top;        /*元素顶部对齐，用于不同机型适配*/
+  margin-left: 20rpx;
+}
+
+.menu-item:last-of-type {
+  margin-right: 30rpx;
+}

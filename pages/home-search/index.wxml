@@ -1,2 +1,36 @@
 <!--pages/home-search/index.wxml-->
-<text>pages/home-search/index.wxml</text>
+<van-search class="search" value="{{searchValue}}" show-action="{{searchValue}}" placeholder="搜索您喜欢的歌曲" shape="round" bind:change="onSearchChange" bind:search="onSearchEnter"></van-search>
+
+<!-- 热门搜索 -->
+<view class="hot" wx:if="{{!searchValue.length}}">
+  <area-header title="热门搜索" showRight="{{false}}"></area-header>
+  <view class="list">
+    <block wx:for="{{hots}}" wx:key="index">
+      <view class="tag" bindtap="onKeywordClick" data-item="{{item.first}}">{{item.first}}</view>
+    </block>
+  </view>
+</view>
+
+<!-- 搜索建议 -->
+<view class="suggest" wx:elif="{{suggest.length && !searchResult.length}}">
+  <view class="title">搜索"{{searchValue}}"</view>
+  <view class="list">
+    <block wx:for="{{suggest}}" wx:key="keyword">
+      <view class="item" bindtap="onKeywordClick" data-item="{{item.keyword}}">
+        <image class="icon" src="/assets/images/icons/search_icon.png" mode="widthFix"></image>
+        <text class="text">
+          <text class="hightLight">{{item.hightLight}}</text><text>{{item.commonWord || item.keyword}}</text>
+        </text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 搜索结果 -->
+<view class="result" wx:elif="searchResult.length">
+  <view class="list">
+    <block wx:for="{{searchResult}}" wx:key="id">
+      <song-list-item item="{{item}}" index="{{index+1}}"></song-list-item>
+    </block>
+  </view>
+</view>

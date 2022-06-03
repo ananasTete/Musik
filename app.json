@@ -4,7 +4,9 @@
     "pages/home-video/index",
     "components/video-item-v1/index",
     "pages/detail-video/index",
-    "pages/home-search/index"
+    "pages/home-search/index",
+    "pages/song-list/index",
+    "pages/music-player/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,5 +31,6 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"]
 }

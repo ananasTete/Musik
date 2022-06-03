@@ -1,0 +1,13 @@
+<!--pages/song-list/index.wxml-->
+<block wx:if="{{type === 'ranking'}}">
+  <area-header title="{{songList.name}}" showRight="{{false}}"></area-header>
+</block>
+<block wx:elif="{{type === 'menu'}}">
+  <song-list-header songInfo="{{songList}}"></song-list-header>
+</block>
+
+<view class="song-list">
+  <block wx:for="{{songList.tracks}}" wx:key="index">
+    <song-list-item item="{{item}}" index="{{index+1}}" bindtap="onSongListItemClick"></song-list-item>
+  </block>
+</view>

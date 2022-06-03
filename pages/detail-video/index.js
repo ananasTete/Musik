@@ -21,6 +21,7 @@ Page({
   },
 
   getPageData: function(id) {
+    console.log(id);
     getMVURL(id).then(res => {
       this.setData({
         mvURLInfo: res.data
